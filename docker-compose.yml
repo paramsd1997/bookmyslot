@@ -28,8 +28,8 @@ services:
     image: mysql:latest
     container_name: mysql
     restart: always
-    hostname: localhost
-    network_mode: "host"
+    #hostname: localhost
+   # network_mode: "host"
     ports:
       - 3306:3306
     #    cap_add:
@@ -67,17 +67,23 @@ services:
     network_mode: host
     ports:
       - 8095:8095
+    environment:
+      - servername_db=mysqlservice
     depends_on:
       - eureka-server
+      - mysqlservice
     restart: always
 
   tag-service:
     container_name: tag-service
     build: tag-service/
-    hostname: localhost
-    network_mode: host
+    #hostname: localhost
+    #network_mode: host
     ports:
       - 8070:8070
+    environment:
+      - servername_mongodb=mongodb
+      - servername_eureka=eureka-server
     depends_on:
       - mongodb
       - eureka-server
@@ -86,10 +92,12 @@ services:
   email-service:
     container_name: email-service
     build: email-service/
-    hostname: localhost
-    network_mode: host
+    #hostname: localhost
+    #network_mode: host
     ports:
       - 8075:8075
+    environment:
+      - servername_eureka=eureka-server
     depends_on:
       - eureka-server
     restart: always
