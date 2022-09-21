@@ -1,4 +1,4 @@
-version: '2'
+version: '3.9'
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -43,8 +43,8 @@ services:
   mongodb:
     image: mongo:latest
     container_name: mongo-container
-    network_mode: host
-    hostname: localhost
+   # network_mode: host
+    #hostname: localhost
     ports:
       - 27017:27017
 
@@ -72,6 +72,7 @@ services:
       - 8095:8095
     environment:
       - servername_db=mysqlservice
+      - servername_eureka=eureka-server
     depends_on:
       - eureka-server
       - mysqlservice
