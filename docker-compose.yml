@@ -51,10 +51,13 @@ services:
   user-service:
     container_name: user-service
     build: user-service/
-    hostname: localhost
-    network_mode: host
+   #hostname: localhost
+    #network_mode: host
     ports:
       - 8090:8090
+    environment:
+      - servername_mongodb=mongodb
+      - servername_eureka=eureka-server
     depends_on:
       - mongodb
       - eureka-server
@@ -63,8 +66,8 @@ services:
   authentication-service:
     container_name: authentication-service
     build: authentication-service/
-    hostname: localhost
-    network_mode: host
+   # hostname: localhost
+    #network_mode: host
     ports:
       - 8095:8095
     environment:
@@ -105,10 +108,12 @@ services:
   interviewer-service:
     container_name: interviewer-service
     build: interviewer-service/
-    hostname: localhost
-    network_mode: host
+   # hostname: localhost
+    #network_mode: host
     ports:
       - 8097:8097
+    environment:
+      - servername_eureka=eureka-server
     depends_on:
       - eureka-server
     restart: always
@@ -117,39 +122,46 @@ services:
     build: eureka-server/
     container_name: eureka-server
     restart: always
-    network_mode: "host"
-    hostname: localhost
+   #network_mode: "host"
+    #hostname: localhost
     ports:
       - 8761:8761
 
   api-gateway:
     build: api-gateway/
     container_name: api-gateway
+    ports:
+      - 8080:8080
+    environment:
+      - servername_eureka=eureka-server
     depends_on:
       - eureka-server
     restart: always
-    network_mode: "host"
-    hostname: localhost
-    ports:
-      - 8080:8080
+    #network_mode: "host"
+    #hostname: localhost
+    
 
   config-server:
     build: config-server/
     container_name: config-server
+    ports:
+      - 8888:8888
+    environment:
+      - servername_eureka=eureka-server
     depends_on:
       - eureka-server
     restart: always
-    network_mode: "host"
-    hostname: localhost
-    ports:
-      - 8888:8888
+  #  network_mode: "host"
+   # hostname: localhost
+    
+     
 
   product-webapp:
     build: product-webapp/
     image: product-webapp
     restart: always
     container_name: product-webapp
-    network_mode: "host"
-    hostname: localhost
+    #network_mode: "host"
+    #hostname: localhost
     ports:
       - "4200:4200"
