@@ -83,15 +83,6 @@ services:
       - eureka-server
     restart: always
 
-  eureka-server:
-    build: eureka-server/
-    container_name: eureka-server
-    restart: always
-   #network_mode: "host"
-    #hostname: localhost
-    ports:
-      - 8761:8761
-
   api-gateway:
     build: api-gateway/
     container_name: api-gateway
@@ -104,6 +95,17 @@ services:
     restart: always
     #network_mode: "host"
     #hostname: localhost
+   
+
+  eureka-server:
+    build: eureka-server/
+    container_name: eureka-server
+    restart: always
+   #network_mode: "host"
+    #hostname: localhost
+    ports:
+      - 8761:8761
+
    
   config-server:
     build: config-server/
