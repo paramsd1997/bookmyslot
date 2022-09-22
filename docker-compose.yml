@@ -92,7 +92,7 @@ services:
       - servername_eureka=eureka-server
     depends_on:
       - eureka-server
-    restart: always
+    #restart: always
     #network_mode: "host"
     #hostname: localhost
    
