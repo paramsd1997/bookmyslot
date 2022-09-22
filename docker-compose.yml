@@ -96,17 +96,6 @@ services:
     #network_mode: "host"
     #hostname: localhost
    
-
-  eureka-server:
-    build: eureka-server/
-    container_name: eureka-server
-    restart: always
-   #network_mode: "host"
-    #hostname: localhost
-    ports:
-      - 8761:8761
-
-   
   config-server:
     build: config-server/
     container_name: config-server
@@ -119,6 +108,18 @@ services:
     restart: always
   #  network_mode: "host"
    # hostname: localhost
+
+  eureka-server:
+    build: eureka-server/
+    container_name: eureka-server
+    restart: always
+   #network_mode: "host"
+    #hostname: localhost
+    ports:
+      - 8761:8761
+
+   
+
    
   rabbitmq:
     image: rabbitmq:3-management
