@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_bookmyslot_1688752261750-pr-trigger-input-set
+  identifier: Build_bookmyslot_1688752261750prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_bookmyslot_1688752261750
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
