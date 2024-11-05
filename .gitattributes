@@ -1,0 +1,7 @@
+# Force Linguist to recognize `.foo` files as JavaScript
+*.foo linguist-language=JavaScript
+*.foo linguist-language=Java
+
+
+# Exclude `vendor/` from language stats
+vendor/* linguist-vendored
